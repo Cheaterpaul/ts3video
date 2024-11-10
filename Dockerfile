@@ -1,13 +1,12 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y build-essential mesa-common-dev astyle
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y wget tar
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . .
+RUN wget -O artifact.tar https://github.com/mfreiholz/ts3video/releases/download/v0.8/server_linux-debian_x86-64-0.8.tar
+RUN tar -xf artifact.tar
 
-RUN ./build-linux.bash
+WORKDIR /app/artifact
 
-
-CMD ["./build-linux.bash"]
+CMD ["./videoserver.sh start"]
