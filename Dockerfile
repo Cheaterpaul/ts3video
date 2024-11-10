@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN make
+RUN ./build-linux.bash
 
 
 CMD ["./build-linux.bash"]
