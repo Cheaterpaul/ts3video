@@ -21,14 +21,11 @@ RUN echo '#!/bin/bash' > replace.sh && \
     echo 'sed -i "s/^maxbitrate=.*/maxbitrate=${TS3VIDEO_BITRATE}/" default.ini' >> replace.sh
 RUN chmod +x replace.sh
 
-RUN cat /etc/locale.gen
-RUN rm -f /usr/lib/locale/locale-archive
-RUN locale-gen --no-archive
-RUN locale-gen --no-archive en_US.utf8
+RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 RUN ls /usr/lib/locale
 
 
-ENV LANG=en_US.utf8
-ENV LC_ALL=en_US.utf8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 CMD ["./videoserver.sh", "start", "--config", "default.ini"]
