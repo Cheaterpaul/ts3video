@@ -22,4 +22,4 @@ RUN echo '#!/bin/bash' > replace.sh && \
 RUN chmod +x replace.sh
 
 
-CMD ["/bin/bash", "-c", "startup.sh && ./videoserver.sh start --config default.ini && tail -f /dev/null"]
+CMD ["/bin/bash", "-c", "ls && /app/server_linux-debian_x86-64-0.8/startup.sh && ./app/server_linux-debian_x86-64-0.8/videoserver.sh start --config default.ini && tail -f /dev/null"]
