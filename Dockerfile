@@ -1,4 +1,6 @@
-FROM ubuntu:18.10
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install -y wget tar locales-all
 
 ENV TS3VIDEO_PORT="13370"
 ENV TS3VIDEO_ADMIN_PASSWORD="admin"
@@ -19,8 +21,13 @@ RUN echo '#!/bin/bash' > replace.sh && \
     echo 'sed -i "s/^maxbitrate=.*/maxbitrate=${TS3VIDEO_BITRATE}/" default.ini' >> replace.sh
 RUN chmod +x replace.sh
 
-RUN ls
-RUN cat replace.sh
+RUN cat /usr/lib/locale
+RUN rm -f /usr/lib/locale/locale-archive
+RUN locale-gen --no-archive
+RUN locale-gen --no-archive en_US.utf8
 
+
+ENV LANG=en_US.utf8
+ENV LC_ALL=en_US.utf8
 
 CMD ["./videoserver.sh", "start", "--config", "default.ini"]
