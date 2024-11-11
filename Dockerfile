@@ -19,7 +19,7 @@ RUN echo '#!/bin/bash' > replace.sh && \
     echo 'sed -i "s/^adminpassword=.*/adminpassword=${TS3VIDEO_ADMIN_PASSWORD}/" default.ini' >> replace.sh && \
     echo 'sed -i "s/^maxresolution=.*/maxresolution=${TS3VIDEO_RESOLUTION}/" default.ini' >> replace.sh && \
     echo 'sed -i "s/^maxbitrate=.*/maxbitrate=${TS3VIDEO_BITRATE}/" default.ini' >> replace.sh \
-    echo 'cat default.ini' >> replace.sh
+    echo 'sed '' default.ini' >> replace.sh
 RUN chmod +x replace.sh
 
 
