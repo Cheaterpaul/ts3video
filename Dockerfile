@@ -1,7 +1,5 @@
 FROM ubuntu:18.10
 
-RUN apt-get update && apt-get install -y wget tar locales-all
-
 ENV TS3VIDEO_PORT="13370"
 ENV TS3VIDEO_ADMIN_PASSWORD="admin"
 ENV TS3VIDEO_RESOLUTION="640x360"
@@ -23,7 +21,6 @@ RUN chmod +x replace.sh
 
 RUN ls
 RUN cat replace.sh
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
+
 
 CMD ["./videoserver.sh", "start", "--config", "default.ini"]
