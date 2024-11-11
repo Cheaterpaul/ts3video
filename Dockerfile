@@ -23,7 +23,7 @@ RUN chmod +x replace.sh
 
 RUN ls
 RUN cat replace.sh
-RUN echo $LANG
-RUN echo $LC_ALL
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 CMD ["./videoserver.sh", "start", "--config", "default.ini"]
