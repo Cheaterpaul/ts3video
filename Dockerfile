@@ -21,10 +21,11 @@ RUN echo '#!/bin/bash' > replace.sh && \
     echo 'sed -i "s/^maxbitrate=.*/maxbitrate=${TS3VIDEO_BITRATE}/" default.ini' >> replace.sh
 RUN chmod +x replace.sh
 
-RUN cat /usr/lib/locale
+RUN cat /etc/locale.gen
 RUN rm -f /usr/lib/locale/locale-archive
 RUN locale-gen --no-archive
 RUN locale-gen --no-archive en_US.utf8
+RUN ls /usr/lib/locale
 
 
 ENV LANG=en_US.utf8
