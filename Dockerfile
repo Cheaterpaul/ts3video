@@ -22,4 +22,4 @@ RUN echo '#!/bin/bash' > replace.sh && \
 RUN chmod +x replace.sh
 
 
-CMD ["/bin/bash", "-c", "replace.sh && ./videoserver.sh start --config default.ini && tail -f /dev/null"]
+CMD ["/bin/bash", "-c", "./replace.sh && ./videoserver.sh start --config default.ini && tail -f /dev/null"]
