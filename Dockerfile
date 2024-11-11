@@ -14,9 +14,11 @@ RUN tar -xf artifact.tar
 
 WORKDIR /app/server_linux-debian_x86-64-0.8
 
-RUN sed -i "s/^port=.*/port=${TS3VIDEO_PORT}/" default.ini
-RUN sed -i "s/^adminpassword=.*/adminpassword=${TS3VIDEO_ADMIN_PASSWORD}/" default.ini
-RUN sed -i "s/^maxresolution=.*/maxresolution=${TS3VIDEO_RESOLUTION}/" default.ini
-RUN sed -i "s/^maxbitrate=.*/maxbitrate=${TS3VIDEO_BITRATE}/" default.ini
+RUN echo '#!/bin/bash' > replace.sh && \
+    echo 'sed -i "s/^port=.*/port=${TS3VIDEO_PORT}/" default.ini' >> replace.sh && \
+    echo 'sed -i "s/^adminpassword=.*/adminpassword=${TS3VIDEO_ADMIN_PASSWORD}/" default.ini' >> replace.sh && \
+    echo 'sed -i "s/^maxresolution=.*/maxresolution=${TS3VIDEO_RESOLUTION}/" default.ini' >> replace.sh && \
+    echo 'sed -i "s/^maxbitrate=.*/maxbitrate=${TS3VIDEO_BITRATE}/" default.ini' >> replace.sh && \
+chmod +x replace.sh
 
-CMD ["./videoserver.sh", "start", "--config", "default.ini"]
+CMD ["./replace.sh && ./videoserver.sh start --config default.ini"]
