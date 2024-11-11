@@ -24,4 +24,4 @@ RUN chmod +x replace.sh
 RUN ls
 RUN cat replace.sh
 
-CMD ["/bin/bash", "-c", "./replace.sh && ./videoserver.sh start --config default.ini"]
+CMD ["/bin/bash", "-c", "./replace.sh && cat default.init && ./videoserver.sh start --config default.ini"]
