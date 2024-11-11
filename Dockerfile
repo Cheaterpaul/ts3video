@@ -1,6 +1,6 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y wget tar
+RUN apt-get update && apt-get install -y wget tar locales-all
 
 ENV TS3VIDEO_PORT="13370"
 ENV TS3VIDEO_ADMIN_PASSWORD="admin"
@@ -23,5 +23,7 @@ RUN chmod +x replace.sh
 
 RUN ls
 RUN cat replace.sh
+RUN echo $LANG
+RUN echo $LC_ALL
 
 CMD ["./videoserver.sh", "start", "--config", "default.ini"]
