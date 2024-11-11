@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y wget tar locales-all
+RUN apt-get update && apt-get install -y wget tar locales
 
 ENV TS3VIDEO_PORT="13370"
 ENV TS3VIDEO_ADMIN_PASSWORD="admin"
